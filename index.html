@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form-React</title>
+    <!-- for more information, visit https://github.com/Gustavo250302/Form-React/ -->
+
+    <!--required links-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel" src="js/form.js"></script>
+    <!--/required links-->
+
+    <style type="text/css">
+        .input,.btn{
+            padding: 10px 5px;
+            border: 1px solid #CCC;
+            outline: none;
+
+        }
+
+        .input{
+            border-radius: 7px 0 0 7px;
+        }
+        .btn{
+            border-radius: 0 7px 7px 0;
+            background-color: #CCC;
+            color: #FFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: center">
+    <h1>Form</h1>
+</div>
+
+<div id="modal-content">
+    loading...
+    <script type="text/babel">
+        var textStyle = {
+            fontFamily: 'sans-serif'
+        };
+
+        var url = 'test.html';
+        var method = 'POST';
+        var data = {name: 'Gustavo', age: 17};
+        var before = () => {
+            document.title = "loading...";
+        };
+        var complete = () => {
+            document.title = "Form-React";
+        };
+        var success = (data) => {
+            $("#dados").html(data);
+        };
+        var error = () => {
+            $("#dados").html('erro na execução da consulta');
+        };
+
+        ReactDOM.render(
+            <Form style={textStyle} id="form">
+                <Label>
+                    <Input name='name' class='input' placeholder='Name*'/>
+                </Label>
+
+                <Button class='btn'
+                        url={url}
+                        method={method}
+                        data={data}
+                        before={before}
+                        complete={complete}
+                        success={success}
+                        error={error}>
+                    Send
+                </Button>
+            </Form>,
+            document.getElementById('modal-content')
+        );
+    </script>
+</div>
+<p id="dados"></p>
+
+</body>
+</html>
