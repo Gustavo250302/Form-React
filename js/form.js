@@ -144,9 +144,11 @@ class Form extends React.Component{
         super(props);
 
         this.style = this.props.style === undefined ? {} : this.props.style;
+        this.id = this.props.id === undefined ? '' : this.props.id;
+        this.class = this.props.class === undefined ? '' : this.props.class;
     }
 
     render(){
-        return <form style={this.style}>{this.props.children}</form>;
+        return <form id={this.id} className={this.class} style={this.style}>{this.props.children}</form>;
     }
 }
